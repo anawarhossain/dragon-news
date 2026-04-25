@@ -1,6 +1,6 @@
 import React from "react";
-import ImageLogo from "@/assets/logo.png";
 import Image from "next/image";
+import ImageLogo from "@/assets/logo.png";
 
 const Header = () => {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <div className="flex flex-col justify-center items-center py-8 space-y-3">
-      <Image src={ImageLogo} alt="The drogon news logo" />
+      <Image src={ImageLogo} alt="The drogon news logo" priority />
       <p className="text-gray-500">Journalism Without Fear or Favour</p>
       {/* <h1 className='font-bold'>
           {new Date().toLocaleDateString("en-US", {
