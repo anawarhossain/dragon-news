@@ -4,7 +4,7 @@ import React from "react";
 
 const MainPageLayout = ({ children }) => {
   return (
-    <div>
+    <div className="container mx-auto">
       <Header />
       <Navbar />
       {children}
