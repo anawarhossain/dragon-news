@@ -1,7 +1,7 @@
 import LeftSidebar from "@/components/homepage/LeftSidebar";
 import { CategoryFetch, NewsFetchByCategory } from "@/lib/dataFetch";
 
-import NewsCard from "../../news/NewsCard";
+import NewsCard from "../../../../components/homepage/NewsCard";
 
 const NewsCategoryPage = async ({ params }) => {
   const { id } = await params;

@@ -4,18 +4,19 @@ import { FaEye, FaRegBookmark, FaShareAlt, FaStar } from "react-icons/fa";
 import Link from "next/link";
 
 const NewsCard = ({ news }) => {
-    return (
+  return (
     <div className="card w-full bg-base-100 border rounded-lg overflow-hidden mb-6">
       {/* Author Section */}
       <div className="flex justify-between items-center bg-gray-50 p-4">
         <div className="flex items-center gap-3">
           <div className="avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full relative">
               <Image
                 src={news.author.img}
                 alt={"Author"}
                 fill
                 className="rounded-full"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -44,6 +45,7 @@ const NewsCard = ({ news }) => {
             alt="News Thumbnail"
             fill
             className="object-cover w-full rounded-md"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </figure>
 
