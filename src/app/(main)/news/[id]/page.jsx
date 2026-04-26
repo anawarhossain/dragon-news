@@ -3,6 +3,22 @@ import RightSidebar from "@/components/homepage/RightSidebar";
 import { DetailsNewsFetchById } from "@/lib/dataFetch";
 import React from "react";
 
+
+export async function generateMetadata({ params }) {
+  // read route params
+  const { id } = await params;
+
+  const detailNews = await DetailsNewsFetchById({ news_id: id });
+
+  // console.log (detailNews[0])
+
+  return {
+    title: detailNews[0].title,
+  };
+}
+
+
+
 const NewsDetailsPage = async ({ params }) => {
   const { id } = await params;
 //   console.log(id, "details params");
