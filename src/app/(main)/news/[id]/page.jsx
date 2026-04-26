@@ -5,13 +5,13 @@ import React from "react";
 
 const NewsDetailsPage = async ({ params }) => {
   const { id } = await params;
-  console.log(id, "details params");
+//   console.log(id, "details params");
 
   const detailNews = await DetailsNewsFetchById({ news_id: id });
-  console.log(detailNews);
+//   console.log(detailNews);
 
   return (
-    <div className=" grid grid-cols-1 lg:grid-cols-4 gap-5">
+    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-5">
       <div className="lg:col-span-3">
         <h2 className="text-xl font-bold mb-4 text-left">Dragon News</h2>
         {detailNews.map((news) => {

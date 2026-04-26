@@ -14,10 +14,10 @@ const NewsCategoryPage = async ({ params }) => {
 
   const Categoriesdata = await NewsFetchByCategory({ category_id: id });
 
-  console.log(Categoriesdata);
+  // console.log(Categoriesdata);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4">
+    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 p-4">
       {/* Left side: Categories */}
       <aside className="lg:col-span-3 py-4">
         <h1 className="text-xl font-bold mb-4 text-left">All Categories</h1>
@@ -59,7 +59,7 @@ const NewsCategoryPage = async ({ params }) => {
       <aside className="lg:col-span-3 py-4">
         <h2 className="text-xl font-bold mb-4 text-left">Login With</h2>
         {/* রাইট সাইড কন্টেন্ট */}
-        <RightSidebar/>
+        <RightSidebar />
       </aside>
     </div>
   );

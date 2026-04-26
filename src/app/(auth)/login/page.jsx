@@ -2,8 +2,8 @@ import React from 'react';
 
 const LoginPage = () => {
     return (
-        <div>
-            <h1>This is LoginPage</h1>
+        <div className='container mx-auto'>
+            <h1>This is fdfdfdfdfdLoginPage</h1>
         </div>
     );
 };

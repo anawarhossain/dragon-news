@@ -2,9 +2,9 @@ import React from 'react';
 
 const RegisterPage = () => {
     return (
-        <div>
-            <h1>This is RegisterPage</h1>
-        </div>
+      <div className="container mx-auto">
+        <h1>This is RegisterPage</h1>
+      </div>
     );
 };
 
