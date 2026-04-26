@@ -1,4 +1,5 @@
 import NewsDetailsCard from "@/components/detailsNews/NewsDetailsCard";
+import RightSidebar from "@/components/homepage/RightSidebar";
 import { DetailsNewsFetchById } from "@/lib/dataFetch";
 import React from "react";
 
@@ -10,14 +11,23 @@ const NewsDetailsPage = async ({ params }) => {
   console.log(detailNews);
 
   return (
-    <div>
-      {detailNews.map((news) => {
-        return (
-          <div key={news._id}>
-            <NewsDetailsCard news={news} />
-          </div>
-        );
-      })}
+    <div className=" grid grid-cols-1 lg:grid-cols-4 gap-5">
+      <div className="lg:col-span-3">
+        <h2 className="text-xl font-bold mb-4 text-left">Dragon News</h2>
+        {detailNews.map((news) => {
+          return (
+            <div key={news._id}>
+              <NewsDetailsCard news={news} />
+            </div>
+          );
+        })}
+      </div>
+      <div className="col-span-1 ">
+        <h2 className="text-xl font-bold mb-4 text-left">Login With</h2>
+        <div className="">
+          <RightSidebar />
+        </div>
+      </div>
     </div>
   );
 };

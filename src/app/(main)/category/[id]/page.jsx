@@ -2,6 +2,7 @@ import LeftSidebar from "@/components/homepage/LeftSidebar";
 import { CategoryFetch, NewsFetchByCategory } from "@/lib/dataFetch";
 
 import NewsCard from "../../../../components/homepage/NewsCard";
+import RightSidebar from "@/components/homepage/RightSidebar";
 
 const NewsCategoryPage = async ({ params }) => {
   const { id } = await params;
@@ -18,7 +19,7 @@ const NewsCategoryPage = async ({ params }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4">
       {/* Left side: Categories */}
-      <aside className="lg:col-span-3">
+      <aside className="lg:col-span-3 py-4">
         <h1 className="text-xl font-bold mb-4 text-left">All Categories</h1>
         <nav className="flex flex-col gap-2">
           {news_category.map((category) => (
@@ -32,8 +33,8 @@ const NewsCategoryPage = async ({ params }) => {
       </aside>
 
       {/* Middle: News */}
-      <main className="lg:col-span-6 p-4">
-        <h2 className="font-semibold">Dragon News Home</h2>
+      <main className="lg:col-span-6 py-4">
+        <h2 className="text-xl font-bold mb-4 text-left">Dragon News Home</h2>
         {/* নিউজ কার্ড এখানে আসবে */}
         <div>
           {Categoriesdata.length > 0 ? (
@@ -55,9 +56,10 @@ const NewsCategoryPage = async ({ params }) => {
       </main>
 
       {/* Right side: Login/Socials */}
-      <aside className="lg:col-span-3">
-        <h2 className="font-semibold mb-4">Login With</h2>
+      <aside className="lg:col-span-3 py-4">
+        <h2 className="text-xl font-bold mb-4 text-left">Login With</h2>
         {/* রাইট সাইড কন্টেন্ট */}
+        <RightSidebar/>
       </aside>
     </div>
   );
