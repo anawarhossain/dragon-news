@@ -19,7 +19,7 @@ const LoginPage = () => {
       callbackURL: "/",
     });
     
-    // console.log(res, error, "errors");
+    console.log(res, error, "errors");
     if (res) {
       alert(`${res.user.name} Login Successfully `);
     } 
