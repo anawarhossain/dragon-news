@@ -3,74 +3,85 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-// export const metadata = {
-//   title: "Login | Dragon news",
-// };
-
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
   const LoginFormHandelerFunc = (data) => {
-    console.log(data, "data");
+    console.log("Form Data:", data);
+    // এখানে আপনার লগইন লজিক (Firebase/Auth) লিখবেন
   };
 
-  console.log(errors, "errors");
-//   console.log(watch("email"), "watch");
-//   console.log(watch("password"), "watch");
-
   return (
-    <div className="bg-gray-100">
-      <div className="flex justify-center items-center min-h-[80vh]">
-        <div className="px-10 py-15 rounded-lg shadow bg-white">
-          <form
-            className=""
-            onSubmit={() => handleSubmit(LoginFormHandelerFunc)}
-          >
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Email</legend>
-              <input
-                type="email"
-                name="email"
-                className="input bg-gray-100"
-                placeholder="Enter your email"
-                {...register("email", { required: "Email is required" })}
-              />
-              {errors.email && (
-                <p className="label text-red-500">{errors.email.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Password</legend>
-              <input
-                type="password"
-                name="password"
-                className="input bg-gray-100"
-                placeholder="Enter your password"
-                {...register("password", { required: "Password is required" })}
-              />
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-md">
+        <h2 className="text-3xl font-bold text-center text-gray-800">
+          Login your account
+        </h2>
+        <hr className="border-gray-200" />
 
-              {errors.password && (
-                <p className="label text-red-500">{errors.password.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <button className="btn w-full bg-zinc-700 text-white">
-                Login
-              </button>
-            </fieldset>
-          </form>
-          <p className="mt-7">
-            Dont’t Have An Account ?{" "}
-            <Link href={"/register"} className="text-red-500">
-              Register
-            </Link>
-          </p>
-        </div>
+        <form
+          onSubmit={handleSubmit(LoginFormHandelerFunc)}
+          className="space-y-4"
+        >
+          <div className="form-control">
+            <label className="label font-semibold">Email address</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className={`input input-bordered bg-gray-100 w-full ${errors.email ? "border-red-500" : ""}`}
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <span className="text-red-500 text-sm mt-1 block">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control">
+            <label className="label font-semibold">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className={`input input-bordered bg-gray-100 w-full ${errors.password ? "border-red-500" : ""}`}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+            />
+            {errors.password && (
+              <span className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control mt-6">
+            <button
+              type="submit"
+              className="btn bg-zinc-700 hover:bg-zinc-800 text-white border-none w-full"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+
+        <p className="text-center text-sm text-gray-600">
+          Don &rsquo; t Have An Account?{" "}
+          <Link
+            href="/register"
+            className="text-red-500 font-semibold hover:underline"
+          >
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );

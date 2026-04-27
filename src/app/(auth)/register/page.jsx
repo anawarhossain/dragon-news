@@ -11,6 +11,7 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -25,79 +26,92 @@ const RegisterPage = () => {
   // console.log(watch("password"), "watch");
 
   return (
-    <div className="bg-gray-100">
-      <div className="flex justify-center items-center min-h-[80vh]">
-        <div className="px-10 py-15 rounded-lg shadow bg-white">
-          <form
-            className=""
-            onSubmit={() => handleSubmit(RegisterFormHandelerFunc)}
-          >
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Name</legend>
-              <input
-                type="text"
-                name="name"
-                className="input bg-gray-100"
-                placeholder="Enter your Name"
-                {...register("name", { required: "Name is required" })}
-              />
-              {errors.name && (
-                <p className="label text-red-500">{errors.name.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Photo Url</legend>
-              <input
-                type="text"
-                name="photo"
-                className="input bg-gray-100"
-                placeholder="Enter your email"
-                {...register("photo", { required: "Photo url is required" })}
-              />
-              {errors.photo && (
-                <p className="label text-red-500">{errors.photo.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Email</legend>
-              <input
-                type="email"
-                name="email"
-                className="input bg-gray-100"
-                placeholder="Enter your email"
-                {...register("email", { required: "Email is required" })}
-              />
-              {errors.email && (
-                <p className="label text-red-500">{errors.email.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Password</legend>
-              <input
-                type="password"
-                name="password"
-                className="input bg-gray-100"
-                placeholder="Enter your password"
-                {...register("password", { required: "Password is required" })}
-              />
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-md">
+        <h2 className="text-3xl font-bold text-center text-gray-800">
+          Register your account
+        </h2>
+        <hr className="border-gray-200" />
 
-              {errors.password && (
-                <p className="label text-red-500">{errors.password.message}</p>
-              )}
-            </fieldset>
-            <fieldset className="fieldset">
-              <label className="label py-3">
-                <input type="checkbox" defaultChecked className="checkbox" />
-                Remember me
-              </label>
-            </fieldset>
-            <fieldset className="fieldset">
-              <button className="btn w-full bg-zinc-700 text-white">
-                Register
-              </button>
-            </fieldset>
-          </form>
-        </div>
+        <form
+          onSubmit={handleSubmit(RegisterFormHandelerFunc)}
+          className="space-y-4"
+        >
+          <div className="form-control">
+            <label className="label font-semibold block">Name</label>
+            <input
+              type="text"
+              placeholder="Enter your Name"
+              className={`input input-bordered bg-gray-100 w-full ${errors.name ? "border-red-500" : ""}`}
+              {...register("name", { required: "Name is required" })}
+            />
+            {errors.name && (
+              <span className="text-red-500 text-sm mt-1 block">
+                {errors.name.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control">
+            <label className="label font-semibold">Photo Url</label>
+            <input
+              type="text"
+              placeholder="Enter your photo url"
+              className={`input input-bordered bg-gray-100 w-full ${errors.photoUrl ? "border-red-500" : ""}`}
+              {...register("photoUrl", { required: "Photo Url is required" })}
+            />
+            {errors.photoUrl && (
+              <span className="text-red-500 text-sm mt-1 block">
+                {errors.photoUrl.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control">
+            <label className="label font-semibold">Email address</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className={`input input-bordered bg-gray-100 w-full ${errors.email ? "border-red-500" : ""}`}
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <span className="text-red-500 text-sm mt-1 block">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control">
+            <label className="label font-semibold">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className={`input input-bordered bg-gray-100 w-full ${errors.password ? "border-red-500" : ""}`}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+            />
+            {errors.password && (
+              <span className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+
+          <div className="form-control mt-6">
+            <button
+              type="submit"
+              className="btn bg-zinc-700 hover:bg-zinc-800 text-white border-none w-full"
+            >
+              Login
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
