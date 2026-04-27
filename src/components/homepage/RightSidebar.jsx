@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import React from "react";
 import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
@@ -5,15 +6,38 @@ import { GrGithub, GrGoogle } from "react-icons/gr";
 import SwimmingImage from "@/assets/swimming.png";
 import ClassImage from "@/assets/class.png";
 import GroudndImage from "@/assets/playground.png";
+import { authClient } from "@/lib/auth-client";
 
 const RightSidebar = () => {
+
+
+  const googleLoginHandle = async() => {
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+      console.log(data)
+  };
+  const GithubLoginHandle = async() => {
+      const data = await authClient.signIn.social({
+        provider: "github",
+      });
+      console.log(data)
+  };
+  
+
   return (
     <div className="space-y-5">
       <div>
-        <button className="btn w-full bg-white text-sky-400 border-sky-400">
+        <button
+          onClick={googleLoginHandle}
+          className="btn w-full bg-white text-sky-400 border-sky-400"
+        >
           <GrGoogle /> Login with Google{" "}
         </button>
-        <button className="btn w-full bg-white border-black mt-3">
+        <button
+          onClick={GithubLoginHandle}
+          className="btn w-full bg-white border-black mt-3"
+        >
           <GrGithub /> Login with Github{" "}
         </button>
       </div>
