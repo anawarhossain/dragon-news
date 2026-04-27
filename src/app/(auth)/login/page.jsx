@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -10,9 +11,22 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const LoginFormHandelerFunc = (data) => {
-    console.log("Form Data:", data);
-    // এখানে আপনার লগইন লজিক (Firebase/Auth) লিখবেন
+  const LoginFormHandelerFunc = async (data) => {
+    const { data: res, error } = await authClient.signIn.email({
+      email: data.email, // required
+      password: data.password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    
+    console.log(res, error, "errors");
+    if (res) {
+      alert(`${res.user.name} Login Successfully `);
+    } 
+    if (error) {
+      alert(error.message)
+    }
+
   };
 
   return (
