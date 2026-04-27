@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import ProfileLogo from "@/assets/user.png";
 import Link from "next/link";
 import NavLink from "./NavLink";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -11,6 +14,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const router = useRouter();
   // মেনু রেন্ডার করার জন্য একটি ফাংশন
   const renderNavLinks = () =>
     navItems.map((item) => (
@@ -18,6 +22,28 @@ const Navbar = () => {
         <NavLink href={item.href}>{item.name}</NavLink>
       </li>
     ));
+
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+  console.log(user?.name, user?.email, user?.image, "session");
+
+  // Logout handle
+  const handleLogout = async () => {
+    try {
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            router.push("/login");
+          },
+          onError: (ctx) => {
+            alert(ctx.error.message || "Logout failed!");
+          },
+        },
+      });
+    } catch (err) {
+      console.error("Unexpected error during logout:", err);
+    }
+  };
 
   return (
     <nav className="container mx-auto">
@@ -57,17 +83,36 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end gap-3">
-          <div className="avatar">
-            <div className="w-10 rounded-full border border-gray-200">
-              <Image src={ProfileLogo} alt="User Profile" />
+          {isPending ? (
+            <span className="loading loading-spinner text-success"></span>
+          ) : user ? (
+            <div>
+              <div className="avatar flex justify-center items-center gap-3">
+                <h1>{user?.name}</h1>
+                <div className="w-10 rounded-full border border-gray-200">
+                  <Image
+                    src={user?.image || ProfileLogo}
+                    alt="User Profile"
+                    width={40}
+                    height={40}
+                  />
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-neutral btn-sm md:btn-md rounded-lg"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
-          </div>
-          <Link
-            href="/login"
-            className="btn btn-neutral btn-sm md:btn-md rounded-lg"
-          >
-            Login
-          </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="btn btn-neutral btn-sm md:btn-md rounded-lg"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
