@@ -16,6 +16,7 @@ const NewsCard = ({ news }) => {
                 alt={"Author"}
                 fill
                 className="rounded-full"
+                loading="eager"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -45,6 +46,7 @@ const NewsCard = ({ news }) => {
             alt="News Thumbnail"
             fill
             className="object-cover w-full rounded-md"
+            loading="eager"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </figure>
