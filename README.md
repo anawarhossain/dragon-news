@@ -125,3 +125,12 @@ public/                  # Public static files
 ## License
 
 This project is for educational/demo purposes. See LICENSE file if present.
+
+# 👨‍💻 Author
+**Md Anawar Hossain**
+- **GitHub:** [@anawarhossain](https://github.com/anawarhossain)
+- **Facebook:** [Anawar Hossain](https://web.facebook.com/AnawarHossain55)
+- **LinkeIn:** [Anawar Hossain](https://www.linkedin.com/in/anawarhossain/)
+- **X(Twitter):** [Anawar Hossain](https://x.com/MDANAWAR22)
+- **WhatsApp:** [Anawar Hossain](https://wa.me/+8801701020694)
+- **Role:** Junior Developer
